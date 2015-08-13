@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="bower_components/angularjs/angular-csp.css"/>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+
+        <!--<link rel="stylesheet" href="app/css/layout.css"/>-->
+
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/angularjs/angular.min.js"></script>
+
+        <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+
+        <script src="app/js/app-config-bootstrap.js"></script>
+        <script src="app/js/bootstrap-controller.js"></script>
+
+        <script src="bower_components/angular-ui-growl/src/growl.js"></script>
+
+        <link rel="stylesheet" href="bower_components/angular-ui-growl/css/growl.css"/>
+
+    </head>
+
+    <body ng-app="helloWorldApp" ng-controller="BoostrapController">
+
+        <!-- -->
+        <script type="text/ng-template" id="error-messages">
+            <p ng-message="minlength">Valor curto</p>
+            <p ng-message="maxlength">Valor grande</p>
+            <p ng-message="required">Obrigatorio</p>
+            <p ng-message="email">E-mail incorreto</p>
+        </script>
+
+        <div class="container">
+            <form novalidate name="myForm">
+                <div class="row">
+
+                    <div class="form-group col-sm-3" ng-class="{ 'has-error': (myForm.nome.$invalid && !myForm.nome.$pristine) }">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome"
+                                ng-model="pessoa.nome"
+                                class="form-control"
+                                ng-minlength="5"
+                                ng-maxlength="10"
+                                required/>
+                        <div class="help-block" ng-messages="myForm.nome.$error" ng-if="!myForm.nome.$pristine">
+                            <p ng-message="minlength">Valor curto</p>
+                            <p ng-message="maxlength">Valor grande</p>
+                            <p ng-message="required">Obrigatorio</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="sobrenome">Sobrenome</label>
+                        <input type="text" id="sobrenome" name="sobrenome"
+                               ng-model="pessoa.sobrenome"
+                               class="form-control"
+                               ng-minlength="5"
+                               ng-maxlength="10"
+                               required/>
+                        <div ng-messages="myForm.sobrenome.$error">
+                            <div ng-messages-include="error-messages"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="nascimento">Nascimento</label>
+                        <input type="date" id="nascimento" name="nascimento"
+                               ng-model="pessoa.nascimento"
+                               class="form-control"
+                               required/>
+                        <div ng-messages="myForm.nascimento.$error">
+                            <div ng-messages-include="app/components/messages.html"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="sexo">Sexo</label>
+                        <select name="sexo" id="sexo" name="sexo"
+                                class="form-control"
+                                ng-model="pessoa.sexo">
+                            <option value="M">Mas</option>
+                            <option value="F">Fem</option>
+                        </select>
+                    </div>
+                </div>
+
+                <nav class="navbar navbar-default">
+                    <button type="submit" class="btn btn-primary navbar-btn" ng-click="salvar();limpar();">
+                        <i class="fa fa-save"></i>Salvar
+                    </button>
+                    <button type="button" class="btn btn-warning navbar-btn" ng-click="limpar()">
+                        <i class="fa fa-eraser"></i>Limpar
+                    </button>
+                    <!--
+                    <button type="button" class="btn btn-danger navbar-btn" ng-click="excluir()">
+                        <i class="fa fa-trash-o"></i>Excluir
+                    </button>
+                    -->
+                </nav>
+
+            </form>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Nome</th>
+                        <th>SobreNome</th>
+                        <th>nascimento</th>
+                        <th>Sexo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="obj in pessoas track by $index" ng-click="editar(obj)">
+                    <td>{{$index}}</td>
+                    <td ng-bind="obj.nome"></td>
+                    <td ng-bind="obj.sobrenome"></td>
+                    <td ng-bind="obj.nascimento | date:'dd/MM/yyyy'"></td>
+                    <td ng-bind="obj.sexo"></td>
+                    <td> <i class="fa fa-trash-o" ng-click="excluir($index);limpar();"></i>  </td>
+                </tr>
+            </table>
+
+            {{pessoas}}
+        </div>
+
+    </body>
+</html>

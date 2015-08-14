@@ -23,8 +23,10 @@
         <script src="app/js/bootstrap-controller.js"></script>
 
         <script src="bower_components/angular-ui-growl/src/growl.js"></script>
-
         <link rel="stylesheet" href="bower_components/angular-ui-growl/css/growl.css"/>
+
+        <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+        <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.min.css"/>
 
     </head>
 
@@ -90,6 +92,17 @@
                             <option value="F">Fem</option>
                         </select>
                     </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="cor">Cor</label>
+                        <select name="cor" id="cor" name="cor"
+                                class="form-control"
+                                ng-model="pessoa.cor">
+                            <option value="pink">Rosa</option>
+                            <option value="blue">Azul</option>
+                            <option value="red">Vermelho</option>
+                        </select>
+                    </div>
                 </div>
 
                 <nav class="navbar navbar-default">
@@ -108,6 +121,7 @@
 
             </form>
 
+            <!--
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -128,9 +142,14 @@
                     <td> <i class="fa fa-trash-o" ng-click="excluir($index);limpar();"></i>  </td>
                 </tr>
             </table>
+            -->
 
-            {{pessoas}}
+            <div ui-grid="gridOptions"></div>
+
+            <!--{{pessoas}}-->
         </div>
+
+
 
     </body>
 </html>

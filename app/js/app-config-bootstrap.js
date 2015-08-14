@@ -4,5 +4,6 @@ angular.module('helloWorldApp', [
                 'ui.growl',
                 'ui.grid',
                 'ui.grid.resizeColumns',
-                'ui.grid.selection'
+                'ui.grid.selection',
+                'ngMaterial',
 ]);

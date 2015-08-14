@@ -25,6 +25,9 @@
             rowTemplate: 'app/components/row-template.html'
         };
 
+        /**
+         *
+         */
         $scope.salvar = function () {
             if ($scope.myForm.$invalid) {
 
@@ -50,6 +53,9 @@
             alert('excluir');
         };
 
+        /**
+         *
+         */
         $scope.limpar = function () {
             $scope.pessoa = {};
             $scope.myForm.$pristine = true;

@@ -28,6 +28,13 @@
         <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
         <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.min.css"/>
 
+        <script src="bower_components/angular-material/angular-material.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+
+        <!-- para deficientes visuais -->
+        <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css"/>
     </head>
 
     <body ng-app="helloWorldApp" ng-controller="BoostrapController">
@@ -149,6 +156,23 @@
             <!--{{pessoas}}-->
         </div>
 
+        <!-- Using Angular Material -->
+        <div ng-controller="BoostrapController" layout="column">
+            <md-content md-theme="docs-dark" layout-padding layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Nome</label>
+                    <input ng-model="pessoa.nome">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Sexo</label>
+                    <md-select ng-model="pessoa.sexo">
+                        <!--<md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">{{state.abbrev}}</md-option>-->
+                        <md-option value="M">Masculino</md-option>
+                        <md-option value="F">Feminino</md-option>
+                    </md-select>
+                </md-input-container>
+            </md-content>
+        </div>
 
 
     </body>

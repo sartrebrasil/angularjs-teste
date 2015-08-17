@@ -6,4 +6,5 @@ angular.module('helloWorldApp', [
                 'ui.grid.resizeColumns',
                 'ui.grid.selection',
                 'ngMaterial',
+                'ui.router'
 ]);

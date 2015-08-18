@@ -36,56 +36,50 @@
     <div class="container" ng-controller="BootstrapCtrl">
         <form novalidate name="myForm" ng-submit="salvar()">
             <div class="row">
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-3" ng-class="{ 'has-error': myForm.itNome.$invalid }">
                     <label for="itNome">Nome</label>
                     <input type="text"
-                            class="form-control"
-                            ng-class="{ 'has-error': myForm.itNome.$invalid }"
-                            id="itNome"
-                            name="itNome"
-                            ng-model="pessoa.nome"
-                            ng-minlength="5"
-                            ng-maxlength="20"
-                            required>
+                           class="form-control"
+                           id="itNome"
+                           name="itNome"
+                           ng-model="pessoa.nome"
+                           maxlength="20"
+                           minlength="5"
+                           required>
                     <div ng-messages="myForm.itNome.$error"
-                            class="help-block"
-                            ng-if="!myForm.$pristine">
+                         class="help-block"
+                         ng-if="!myForm.$pristine">
                         <div ng-messages-include="app/components/messages.html"></div>
                     </div>
                 </div>
 
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-3" ng-class="{ 'has-error': myForm.itSobrenome.$invalid }">
                     <label for="itSobrenome">Sobrenome</label>
                     <input type="text"
                            class="form-control"
-                           ng-class="{ 'has-error': (myForm.itSobrenome.$invalid && !myForm.$pristine)}"
                            id="itSobrenome"
                            name="itSobrenome"
-                           ng-model="pessoa.sobrenome"
-                           >
+                           ng-model="pessoa.sobrenome">
                     <div ng-messages="myForm.itSobrenome.$error" class="help-block" ng-if="!myForm.$pristine">
                         <div ng-messages-include="app/components/messages.html"></div>
                     </div>
                 </div>
 
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-3" ng-class="{ 'has-error': myForm.idDataNascimento.$invalid }">
                     <label for="idDataNascimento">Data de Nascimento</label>
                     <input type="date"
                            class="form-control"
-                           ng-class="{ 'has-error': (myForm.idDataNascimento.$invalid && !myForm.$pristine)}"
                            id="idDataNascimento"
                            name="idDataNascimento"
-                           ng-model="pessoa.dataNascimento"
-                           >
+                           ng-model="pessoa.dataNascimento">
                     <div ng-messages="myForm.idDataNascimento.$error" class="help-block" ng-if="!myForm.$pristine">
                         <div ng-messages-include="app/components/messages.html"></div>
                     </div>
                 </div>
 
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-3" ng-class="{ 'has-error': (myForm.sSexo.$invalid && !myForm.$pristine)}">
                     <label for="sSexo">Sexo</label>
                     <select class="form-control"
-                            ng-class="{ 'has-error': (myForm.sSexo.$invalid && !myForm.$pristine)}"
                             id="sSexo"
                             name="sSexo"
                             ng-model="pessoa.sexo">
@@ -98,23 +92,51 @@
                 </div>
             </div>
 
-            <table class="table">
-                <tr>
-                    <th>Index</th>
-                    <th>Nome</th>
-                    <th>Sobrenome</th>
-                    <th>Data Nasc.</th>
-                    <th>Sexo</th>
-                </tr>
+            <div class="row">
+                <div class="form-group col-sm-3" ng-class="{ 'has-error': myForm.itCor.$invalid }">
+                    <label for="itCor">Cor</label>
+                    <input type="text"
+                           class="form-control"
+                           id="itCor"
+                           name="itCor"
+                           ng-model="pessoa.cor">
+                    <div ng-messages="myForm.itCor.$error"
+                         class="help-block"
+                         ng-if="!myForm.$pristine">
+                        <div ng-messages-include="app/components/messages.html"></div>
+                    </div>
+                </div>
+            </div>
 
-                <tr ng-repeat="pessoa in pessoas track by $index" ng-click="editar(pessoa)">
-                    <td ng-bind="$index"></td>
-                    <td ng-bind="pessoa.nome"></td>
-                    <td ng-bind="pessoa.sobrenome"></td>
-                    <td ng-bind="pessoa.dataNascimento | date: 'dd/MM/yyyy'"></td>
-                    <td ng-bind="pessoa.sexo"></td>
-                </tr>
-            </table>
+            <div class="row">
+                <md-input-container class="form-group col-sm-3">
+                    <label>Nome</label>
+                    <input ng-model="pessoa.nome" required>
+                </md-input-container>
+
+                <md-input-container class="form-group col-sm-3" >
+                    <label>Sobrenome</label>
+                    <input ng-model="pessoa.sobrenome" required>
+                </md-input-container>
+
+                <md-input-container class="form-group col-sm-3" >
+                    <label>Data de Nascimento</label>
+                    <input type="date" ng-model="pessoa.dataNascimento">
+                </md-input-container>
+
+                <md-input-container class="form-group col-sm-3" >
+                    <label>Sexo</label>
+                    <md-select ng-model="pessoa.sexo">
+                        <md-option value="M">Macho</md-option>
+                        <md-option value="F">Fêmea</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div ui-grid="gridOptions"
+                 ui-grid-resize-columns
+                 ui-grid-selection>
+            </div>
 
             <nav class="navbar navbar-default" style="padding-left: 10px;">
                 <button type="submit" class="btn btn-primary navbar-btn">

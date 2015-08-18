@@ -1,21 +1,23 @@
-
-/*criando um module "helloWorldApp"*/
-angular.module('helloWorldApp', [])
-    .controller('HelloWorldController', HelloWorldController);
+/**
+ * Created by ATILLA on 10/08/2015.
+ */
+angular.module('helloWorldApp', ['ngMessages'])
+        .controller('HelloWorldController', HelloWorldController);
 
 HelloWorldController.$inject = ['$scope'];
 
 function HelloWorldController($scope) {
-    $scope.nome = 'Sartre';
+    $scope.nome = '';
 
     $scope.myStyle = {};
-    $scope.myClass = '';
+    $scope.myClass = {};
     $scope.myStyle.width = '100px';
     $scope.myStyle.height = '100px';
 
     $scope.$watch('nome', function(newValue, oldValue) {
-        if (newValue == oldValue)
+        if (newValue == oldValue) {
             return;
+        }
 
         if (newValue != undefined && newValue == 'oobj') {
             $scope.myStyle.backgroundColor = 'green';

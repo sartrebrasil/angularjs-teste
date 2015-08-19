@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-growl/css/growl.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <!-- endbower -->
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-ui-growl/src/growl.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+    <!-- endbower -->
+
+    <script src="app/js/app-config-bootstrap.js"></script>
+    <script src="app/directives/hello-world/hello-world-directive.js"></script>
+    <script src="app/directives/input-text/input-text.js"></script>
+
+    <!-- grunt-contrib-watch -->
+    <script src="//localhost:35729/livereload.js"></script>
+
+</head>
+
+    <body ng-app="bootstrapApp">
+        <div class="row">
+
+            <input-text
+                label="Nome"
+                ng-model="pessoa.nome"
+                colspan="6"/>
+
+            <input-text
+                label="Sobrenome"
+                ng-model="pessoa.sobrenome"
+                colspan="6"/>
+        </div>
+    </body>
+</html>
